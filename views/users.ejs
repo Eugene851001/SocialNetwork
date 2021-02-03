@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Пользователи</title>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="../style/style.css" />
+</head>
+<body class="body">
+	<div class="grid-container">
+		<header>
+			<h1>Пользователи</h1>
+		</header>
+		<nav>
+			<a href="../user/<%=userId%>"><h2>Моя страница</h2></a>
+			<a href="../user/users"><h2>Пользователи</h2><a>
+			<a href="../post/posts"><h2>Посты</h2></a>
+			<a href="../signout"><h2>Выйти</h2></a>
+		</nav>
+		<article>
+			<table>
+			<% for (var i = 0; i < users.length; i++) {%>
+			<tr>
+				<td><img src="../uploads/<%=users[i].photo%>" width="32" height="32"></td>
+				<td><a href="<%=users[i]._id%>"><%=users[i].name%></a></td></tr>
+			<%}%>
+			</table>
+		</article>
+		<footer>
+			<h4>Copyright &copy; TrahanovEugene 2021</h4>
+		</footer>
+	</div>
+</body>
+<html>

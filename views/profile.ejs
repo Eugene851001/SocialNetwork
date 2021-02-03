@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Профиль</title>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="../style/style.css" />
+</head>
+<body class="body">
+	<div class="grid-container">
+		<header>
+			<h1>Профиль</h1>
+		</header>
+		<nav>
+			<a href="../user/<%=userId%>"><h2>Моя страница</h2></a>
+			<a href="../user/users"><h2>Пользователи</h2></a>
+			<a href="../post/posts"><h2>Посты</h2></a>
+			<a href="../signout"><h2>Выйти</h2></a>
+		</nav>
+		<article>
+			<img src="../uploads/<%=user.photo%>" width="320" height="240"/>
+			<% if (myProfile) {%>
+			<form action="editPhoto" method="POST" enctype="multipart/form-data">
+				<input type="file" name="filedata" required><br>
+				<input type="submit" value="Изменить">
+			</form>
+			<%} else{
+				if (!signed){%>
+					<a href="follow?userId=<%=user._id%>">Подписаться</a>
+				<%}else {%>
+					<a href="unfollow?userId=<%=user._id%>">Отписаться</a>
+			<%	}
+			}%>
+			<p>
+				<h2><%=user.name%></h2>
+			</p>
+			<table>
+				<tr>
+					<td><a href="getFollowing?userId=<%=user._id%>">Following</a></td>
+					<td><a href="getFollowers?userId=<%=user._id%>">Followers</a></td>
+				</tr>
+				<tr>
+					<td><%=user.following.length%></td>
+					<td><%=user.followers.length%></td>
+				</tr>
+			</table>
+		</article>
+		<footer>
+			<h4>Copyright &copy; TrahanovEugene 2021</h4>
+		</footer>
+	</div>
+</body>
+<html>

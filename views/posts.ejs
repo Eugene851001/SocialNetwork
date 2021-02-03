@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Посты</title>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="../style/style.css" />
+</head>
+<body class="body">
+	<div class="grid-container">
+		<header>
+			<h1>Посты</h1>
+		</header>
+		<nav>
+			<a href="../user/<%=userId%>"><h2>Моя страница</h2></a>
+			<a href="../user/users"><h2>Пользователи</h2></a>
+			<a href="../post/posts"><h2>Посты</h2></a>
+			<a href="../signout"><h2>Выйти</h2></a>
+		</nav>
+		<article>
+			<form action="create" method="POST" enctype="multipart/form-data" class="add-post-form">
+				<input type="text" name="description"/><br>
+				<input type="file" name="filedata" required/><br>
+				<input type="submit" value="Добавить"/>
+			</form>
+			<% for (var i = 0; i < posts.length; i++) {%>
+				<div class="post">
+					<p><h3><%=posts[i].author.name%></h3></p>
+					<p><%=posts[i].description%></p>
+					<p><%=posts[i].date.getDate() + "." + 
+					(posts[i].date.getMonth() + +1) + "." +
+					posts[i].date.getFullYear() + " " +
+					posts[i].date.getHours() + ":" +
+					posts[i].date.getMinutes()%></p>
+					<img src="../uploads/<%=posts[i].image%>" width="480" height="320">
+					<a href="like?id=<%=posts[i]._id%>">Like <%=posts[i].likes.length%></a>
+				</div>
+			<%}%>
+		</article>
+		<footer>
+			<h4>Copyright &copy; TrahanovEugene 2021</h4>
+		</footer>
+	</div>
+</body>
+<html>
